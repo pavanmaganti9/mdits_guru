@@ -273,11 +273,13 @@ class Front extends CI_Controller {
 	}
 	
 	public function fw(){
-		$data = $this->input->post('input');
-		echo $data;
+		$this->load->view('cm');
 		//print_r($data);die();
 		//$data['input'] = "input=%3C%3Fphp%0Aecho+%22Hello+Pavan123!%22%3B%0A%3F%3E";
 		//$this->load->view('file-write',$data);
+	}
+	public function ev(){
+		$this->load->view('eval');
 	}
 	
 	public function logout(){
