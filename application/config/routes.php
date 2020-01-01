@@ -59,6 +59,7 @@ $route['login'] = 'front/login';
 $route['course/(:any)'] = 'front/course_detail/$1';
 $route['topic/(:any)'] = 'front/topic_detail/$1';
 $route['search'] = 'front/search';
+$route['course/search'] = 'front/search';
 $route['userlogin'] = 'front/userlogin';
 
 

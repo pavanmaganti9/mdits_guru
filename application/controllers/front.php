@@ -33,6 +33,9 @@ class Front extends CI_Controller {
 		$types = $data['topic']['language'];
 		$data['topics'] = $this->Front_model->getlangtopic(array('prodtyp'=>$types));
 		$data['title'] = $data['topic']['name'];
+		$sess_is = $_SESSION['userProfile']['id'];
+		$tbl = 'guru_users';
+		$data['usersess'] = $this->Front_model->getbyid($sess_is,$tbl);
 		$this->load->view('topic',$data);
 		}else{
 			redirect('login');
@@ -222,7 +225,11 @@ class Front extends CI_Controller {
 		$data['word'] = $search;
 		$data['query'] = $this->Front_model->get_search($search);
 		$data['cnt'] = count($data['query']);
+		$segment = $this->uri->segment_array();
+		//print_r($segment); die();
 		$this->load->view('search',$data);
+		//$this->session->set_flashdata('lolwut',$data);
+		//redirect('search');
 	}
 	
 	public function download($file){

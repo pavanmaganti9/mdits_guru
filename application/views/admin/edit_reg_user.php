@@ -65,7 +65,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                            <form role="form" method="post" enctype="multipart/form-data">
+                            <form role="form" method="post">
                                         <div class="form-group">
                                             <label>First Name</label>
                                             <input class="form-control" name="topicname" disabled value="<?php echo !empty($user['first_name'])?$user['first_name']:''; ?>">
@@ -103,20 +103,20 @@
                                         </div>
 										<div class="form-group">
 													<label for="lang">Topic</label>
-										<select name="company" class="form-control">
-										 <option>---Select Company---</option>
+										<select name="topic" class="form-control">
+										 <option value="none">---Select Company---</option>
 										 <option value="<?php echo $user['topic'];?>" selected> <?php echo $user['topic'];?></option>
 										<?php foreach($lang as $post): ?>
-										<option value="<?php echo $post['id'];?>"> <?php echo $post['name'];?></option>
+										<option value="<?php echo $post['name'];?>"> <?php echo $post['name'];?></option>
 										<?php endforeach;?>
 										</select>
-										<?php echo form_error('lang','<p class="help-block" style="color:red;">','</p>'); ?>
+										<?php echo form_error('topic','<p class="help-block" style="color:red;">','</p>'); ?>
 										</div>
 										<div class="form-group">
 													<label for="lang">Topic status</label>
 										<?php if($user['tstatus'] == 1){ $usts = "Active";}else{$usts = "Inactive";}?>
-										<select name="company" class="form-control">
-										 <option>---Select Company---</option>
+										<select name="topicstat" class="form-control">
+										 <option value="none">---Select Company---</option>
 										 <option value="<?php echo $user['tstatus'];?>" selected> <?php echo $usts;?></option>
 										<?php if($user['tstatus'] == 1){?>
 										<option value="0">Inactive</option>
@@ -128,17 +128,17 @@
 										</div>
 										<div class="form-group">
 										<label>Topic Start date</label>
-											<input type="text" id="datetimepicker" class="form-control" value="<?php echo !empty($user['tstartdate'])?$user['tstartdate']:''; ?>"/>
+											<input type="text" name="tsdate" id="datetimepicker" class="form-control" value="<?php echo !empty($user['tstartdate'])?$user['tstartdate']:''; ?>"/>
 										</div>
 										<div class="form-group">
 										<label>Topic Expiry date</label>
-											<input type="text" id="datetimepickerr" class="form-control" value="<?php echo !empty($user['tenddate'])?$user['tenddate']:''; ?>"/>
+											<input type="text" name="tedate" id="datetimepickerr" class="form-control" value="<?php echo !empty($user['tenddate'])?$user['tenddate']:''; ?>"/>
 										</div>
 										<div class="form-group">
 													<label for="lang">User status</label>
 										<?php if($user['ustatus'] == 1){ $usts = "Active";}else{$usts = "Inactive";}?>
-										<select name="company" class="form-control">
-										 <option>---Select Company---</option>
+										<select name="userstat" class="form-control">
+										 <option value="none">---Select Company---</option>
 										 <option value="<?php echo $user['ustatus'];?>" selected> <?php echo $usts;?></option>
 										<?php if($user['ustatus'] == 1){?>
 										
@@ -147,9 +147,11 @@
 										<option value="1">Active</option>
 										<?php } ?>
 										</select>
-										<?php echo form_error('lang','<p class="help-block" style="color:red;">','</p>'); ?>
+										<?php echo form_error('userstat','<p class="help-block" style="color:red;">','</p>'); ?>
 										</div>
-										
+										<div class="form-group">
+										<input type="submit" name="userupdate" class="btn btn-primary" value="Update User">
+										</div>
 							</form>
 							   </div>
                                 

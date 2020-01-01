@@ -89,5 +89,15 @@ class Front_model extends CI_MODEL{
 		}
 		return false;
 	}
+	
+	function getbyid($id = "",$table){
+        if(!empty($id)){
+            $query = $this->db->get_where($table, array('id' => $id));
+            return $query->row_array();
+        }else{
+            $query = $this->db->get('posts');
+            return $query->result_array();
+        }
+    }
 
 }

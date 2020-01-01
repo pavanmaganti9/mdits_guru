@@ -332,6 +332,26 @@ class Admin extends CI_Controller {
             $data['user'] = $this->Admin_model->getbyid($id,$table);
 			$table2 = 'languages';
             $data['lang'] = $this->Admin_model->retrieve_all($table2);
+			if($this->input->post('userupdate')){
+				//$this->form_validation->set_rules('topicname', 'Topic Name', 'required|xss_clean|is_unique[topics.name]');
+				//$this->form_validation->set_rules('topicdesc', 'Product Description', 'required|xss_clean'); 
+				//$this->form_validation->set_rules('topic', 'Topic', 'required|callback_select_validate');
+				$this->form_validation->set_rules('userstat','User status','required|callback_select_validate');
+				if($this->form_validation->run() == FALSE){
+				
+				}else{
+					$postData = array(
+						'topic' => $this->input->post('topic'),
+						'tstartdate' => $this->input->post('tsdate'),
+						'tenddate' => $this->input->post('tedate'),
+						'tstatus' => $this->input->post('topicstat'),
+						'ustatus' => $this->input->post('userstat')
+					);
+					$update = $this->Admin_model->updatebyid($postData, $id, $table);
+					$this->session->set_flashdata('message', 'User updated successfully!');
+					redirect('admin/view_registered_users/'.$id);
+				}
+			}
 			$this->load->view('admin/edit_reg_user',$data);
 		}else{
 			redirect('admin');
@@ -347,6 +367,16 @@ class Admin extends CI_Controller {
 			$this->load->view('admin/admin_users',$data);
 		}else{
 			redirect('admin');
+		}
+	}
+	
+	function select_validate($abcd)
+	{
+		if($abcd=="none"){
+			$this->form_validation->set_message('select_validate', 'The field is required.');
+			return false;
+		} else{
+			return true;
 		}
 	}
 
