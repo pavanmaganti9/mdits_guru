@@ -24,7 +24,7 @@
   </style>
 </head>
 
-<body>
+<body oncopy="return false" oncut="return false" onpaste="return false">
 
   <!-- Navigation -->
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">

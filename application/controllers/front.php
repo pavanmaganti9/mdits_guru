@@ -33,7 +33,7 @@ class Front extends CI_Controller {
 		$types = $data['topic']['language'];
 		$data['topics'] = $this->Front_model->getlangtopic(array('prodtyp'=>$types));
 		$data['title'] = $data['topic']['name'];
-		$sess_is = $_SESSION['userProfile']['id'];
+		$sess_is = $_SESSION['userProfile']['email'];
 		$tbl = 'guru_users';
 		$data['usersess'] = $this->Front_model->getbyid($sess_is,$tbl);
 		$this->load->view('topic',$data);

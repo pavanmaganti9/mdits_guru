@@ -6,7 +6,7 @@
     <!-- Content Row -->
     <div class="row">
       <!-- Sidebar Column -->
-      <div class="col-lg-3 mb-4">
+      <div class="col-lg-2">
 				
           <div class="list-group">
 		  <?php foreach($topics as $row){?>
@@ -15,7 +15,7 @@
         </div>
       </div>
       <!-- Content Column -->
-      <div class="col-lg-9 mb-4">
+      <div class="col-lg-6 no-copy">
 	  <img src="<?php echo site_url('assets/images/languages/'.$language['image']); ?>" style="width:10%;">
         <h2><?php echo $language['name'];?></h2>
         <p><?php echo $language['description'];?></p>
@@ -70,6 +70,17 @@
     }
   };
 </script>
+<style>
+.no-copy {
+  -webkit-user-select: none;  /* Chrome all / Safari all */
+  -moz-user-select: none;     /* Firefox all */
+  -ms-user-select: none;      /* IE 10+ */
+  user-select: none;          /* Likely future */     
+}
+.container {
+    max-width: 1400px;
+}
+</style>
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">

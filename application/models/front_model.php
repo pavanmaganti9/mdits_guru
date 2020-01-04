@@ -92,7 +92,7 @@ class Front_model extends CI_MODEL{
 	
 	function getbyid($id = "",$table){
         if(!empty($id)){
-            $query = $this->db->get_where($table, array('id' => $id));
+            $query = $this->db->get_where($table, array('email' => $id));
             return $query->row_array();
         }else{
             $query = $this->db->get('posts');

@@ -47,7 +47,7 @@ class Admin_model extends CI_MODEL{
 	public function updatebyid($data, $id, $table) {
         if(!empty($data) && !empty($id)){
             $update = $this->db->update($table, $data, array('id'=>$id));
-			
+			//print_r($this->db->update($table, $data, array('id'=>$id)));die();
             return $update?true:false;
         }else{
             return false;
