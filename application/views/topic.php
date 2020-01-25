@@ -1,5 +1,5 @@
 <?php include 'header.php'; ?>
-
+<link href="<?php echo base_url(); ?>assets/front/css/style.css" rel="stylesheet">
   <!-- Page Content -->
   <div class="container">
 	<div><br></div>
@@ -9,18 +9,42 @@
 	  <div class="col-sm-12">-->
 	  
       <div class="col-lg-2">
-				
-          <div class="list-group">
-		  <?php foreach($topics as $row){?>
-          <a href="<?php echo base_url('topic/'.$row['slug']);?>" class="list-group-item"><?php echo $row['name'];?></a>
-		  <?php } ?>
-        </div>
-      </div>
+	  <div class="scroll">
+<?php $url = base_url(uri_string()); 
+	  $chunk = explode('/',$url);
+	  $url_chunk = $chunk[5];
+	  ?>	  
+        <?php $concepts = array();
+		//print_r($topics);
+	$langgu = array();
+	$conce = array();
+	foreach($topics as $topicc){
+		$langgu[] = $topicc['language'];
+			$concepts []= ($topicc['heading']);
+			$conce []= ($topicc['concept']);
+
+	}
+	$con_res = array_unique($concepts);
+	$concqwe = array_unique($conce);
+	print_r("<h4>".$concqwe[0]."</h4>");
+	  foreach($con_res as $row){
+		  ?>
+		<div class="leftmenu2">
+			<h2 class="spanh2"><span class="spanh2" style="color:red;"><?php echo $row;?></span></h2>
+		</div>
+		<?php foreach($topics as $roww){
+			//print_r($roww['name']);
+			if($row == $roww['heading']){?>
+		<div class="leftmenu">
+			<a href="<?php echo base_url('topic/'.$roww['slug']);?>" style="text-decoration:none;"><?php if($url_chunk == $roww['slug']){ echo "<b style='color:#000;'>".$roww['name']."</b>"; }else{ echo $roww['name'];}?></a>
+			</div><br><?php } } } ?>
+      </div></div>
       <!-- Content Column -->
       <div class="col-lg-6 no-copy">
 	  <?php //print_r($usersess);
-	  $utopic = $usersess['topic'];
-	 $currentopic = $topic['language'];
+	  $utopics = $usersess['topic'];
+	  $utopic = explode(',',$utopics);
+	  $currentopic = $topic['language'];
 	   $utopicststus = $usersess['tstatus'];
 	  $present_date = date("Y/m/d H:i");
 	 $endate = $usersess['tenddate'];
@@ -46,8 +70,8 @@ $exp = ($diff->invert == 1 ) ? 'passed' : 'expired';
 //echo $exp;
 
 	  ?>
-	  <?php if(($utopic == $currentopic) && $utopicststus == 1 && $exp == 'passed'){ ?>
-        <h2><?php echo $topic['name'];?></h2><p align="right"><a href="<?php echo base_url().'front/download/'.$topic['image']; ?>">Download Topic</a></p>
+	  <?php if((in_array($currentopic, $utopic)) && $utopicststus == 1 && $exp == 'passed'){ ?>
+        <h2><?php echo $topic['name'];?></h2><p align="right"><!--<a href="<?php echo base_url().'front/download/'.$topic['image']; ?>">Download Topic</a>--></p>
         <p><?php echo $topic['description'];?></p>
 		<!--<p>Executer the <a href="../front/fw">code</a></p>
 		<object data="<?php //echo base_url('assets/images/topic_doc/'.$topic['image']);?>#toolbar=0&scrollbar=0&navpanes=0&embedded=true&statusbar=0&view=Fit;readonly=true;disableprint=true;" type="application/pdf" width="100%" height="70%">
@@ -126,14 +150,24 @@ $exp = ($diff->invert == 1 ) ? 'passed' : 'expired';
 .container {
     max-width: 1400px;
 }
+.scroll {
+  height: 90%;
+  width:16%;
+  position:fixed;
+  overflow-x:auto;
+  overflow-y:auto;
+  z-index: 1;
+  overflow: scroll; 
+    background-color:#FFF;
+}
 </style>
-  <!-- Footer -->
+  <!-- Footer 
   <footer class="py-5 bg-dark">
     <div class="container">
       <p class="m-0 text-center text-white">Copyright &copy; MDITS <?php echo date("Y");?></p>
     </div>
-    <!-- /.container -->
-  </footer>
+   
+  </footer>-->
 
   <!-- Bootstrap core JavaScript -->
   <script src="<?php echo base_url(); ?>assets/front/vendor/jquery/jquery.min.js"></script>

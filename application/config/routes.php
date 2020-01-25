@@ -59,8 +59,8 @@ $route['login'] = 'front/login';
 $route['course/(:any)'] = 'front/course_detail/$1';
 $route['topic/(:any)'] = 'front/topic_detail/$1';
 $route['search'] = 'front/search';
-$route['course/search'] = 'front/search';
 $route['userlogin'] = 'front/userlogin';
+$route['concept/(:any)'] = 'front/concept_detail/$1';
 
 
 //For Admin
@@ -75,3 +75,11 @@ $route['admin/registered_users'] = 'admin/Admin/guru_users';
 $route['admin/view_registered_users/(:num)'] = 'admin/Admin/edit_guru_users/$1';
 $route['admin/users'] = 'admin/Admin/admin_users';
 $route['admin/edittopic/(:num)'] = 'admin/Admin/edittopic/$1';
+$route['admin/deletetopic/(:num)'] = 'admin/Admin/deletetopic/$1';
+$route['admin/add_tutorial'] = 'admin/Admin/add_tutorial';
+$route['admin/tutorials'] = 'admin/Admin/tutorials';
+$route['admin/get_tutorial'] = 'admin/Admin/get_tuto';
+$route['admin/positions'] = 'admin/Admin/positions';
+$route['admin/searchpos'] = 'admin/Admin/searchpos';
+$route['admin/changepos/down/(:num)'] = 'admin/Admin/changeposd/$1';
+$route['admin/changepos/up/(:num)'] = 'admin/Admin/changeposu/$1';

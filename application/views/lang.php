@@ -1,5 +1,5 @@
 <?php include 'header.php'; ?>
-
+<link href="<?php echo base_url(); ?>assets/front/css/style.css" rel="stylesheet">
   <!-- Page Content -->
   <div class="container">
 	<div><br></div>
@@ -7,15 +7,32 @@
     <div class="row">
       <!-- Sidebar Column -->
       <div class="col-lg-2">
-				
-          <div class="list-group">
+	  <?php $concepts = array();
+	$langgu = array();
+	foreach($topics as $topicc){
+		$langgu[] = $topicc['language'];
+			$concepts []= ($topicc['concept']);
+	}
+	$con_res = array_unique($concepts);
+	  foreach($con_res as $row){?>
+		<div class="leftmenu2">
+			<h2 class="spanh2"><span class="spanh2" style="color:red;"><?php echo $row;?></span></h2>
+		</div>
+		<?php foreach($topics as $roww){
+			//print_r($roww['name']);
+			if($row == $roww['concept']){?>
+		<div class="leftmenu">
+			<a href="<?php echo base_url('topic/'.$roww['slug']);?>" style="text-decoration:none;"><?php echo $roww['name'];?></a>
+			</div><br><?php } } } ?>
+          <!--<div class="list-group">
 		  <?php foreach($topics as $row){?>
           <a href="<?php echo base_url('topic/'.$row['slug']);?>" class="list-group-item"><?php echo $row['name'];?></a>
 		  <?php } ?>
-        </div>
+        </div>-->
       </div>
       <!-- Content Column -->
       <div class="col-lg-6 no-copy">
+	  
 	  <img src="<?php echo site_url('assets/images/languages/'.$language['image']); ?>" style="width:10%;">
         <h2><?php echo $language['name'];?></h2>
         <p><?php echo $language['description'];?></p>

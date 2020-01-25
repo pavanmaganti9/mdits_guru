@@ -13,8 +13,12 @@ class Front extends CI_Controller {
 	
 	public function index()
 	{
-		$data['title'] = 'MDITS | Home';
+		$data['title'] = 'Trainuonline';
 		$data['languages'] = $this->Front_model->get_language_bylimit();
+		$types = $data['languages'];
+		$data['types'] = $data['languages'];
+		$data['topics'] = $this->Front_model->getRow_topic(array('prodtyp'=>$data['types']));
+		$data['tutorial'] = $this->Front_model->retrieve_tuto();
 		$this->load->view('home',$data);
 	}
 	
@@ -29,8 +33,7 @@ class Front extends CI_Controller {
 	public function topic_detail($slug){
 		if(isset($_SESSION['userProfile']['email'])){
 		$data['topic'] = $this->Front_model->getRow_topic(array('url_slug'=>$slug));
-		//print_r($data['topic']);die();
-		$types = $data['topic']['language'];
+		$types = $data['topic']['concept'];
 		$data['topics'] = $this->Front_model->getlangtopic(array('prodtyp'=>$types));
 		$data['title'] = $data['topic']['name'];
 		$sess_is = $_SESSION['userProfile']['email'];
@@ -44,7 +47,7 @@ class Front extends CI_Controller {
 	
 	public function register()
 	{
-		$data['title'] = 'MDITS | Register';
+		$data['title'] = 'Trainuonline | Register';
 		$table = 'guru_users';
 		$start_date = date('Y/m/d H:i');
 		$end_date = date('Y/m/d H:i',strtotime('+30 days',strtotime(date('Y/m/d H:i'))));
@@ -84,7 +87,7 @@ class Front extends CI_Controller {
 					$this->session->set_flashdata('errmessage', 'Email already registered! Please login');					
 					redirect('register');
 				}else{
-					$userID = $this->Users->checkUser($userData);
+					//$userID = $this->Users->checkUser($userData);
 					$this->session->set_userdata('login',true);
 					$this->session->set_userdata('userProfile',$this->googleplus->getUserInfo());
 					redirect('/');
@@ -155,7 +158,7 @@ class Front extends CI_Controller {
 
 	public function login()
 	{
-		$data['title'] = 'MDITS | Login';
+		$data['title'] = 'Trainuonline | Login';
 		
 		if(isset($_REQUEST['code']))
 		{
@@ -220,16 +223,12 @@ class Front extends CI_Controller {
 	
 	public function search()
 	{
-		$data['title'] = 'MDITS | Search';
+		$data['title'] = 'Trainuonline | Search';
 		$search = $this->input->post('search');
 		$data['word'] = $search;
 		$data['query'] = $this->Front_model->get_search($search);
 		$data['cnt'] = count($data['query']);
-		$segment = $this->uri->segment_array();
-		//print_r($segment); die();
 		$this->load->view('search',$data);
-		//$this->session->set_flashdata('lolwut',$data);
-		//redirect('search');
 	}
 	
 	public function download($file){
@@ -287,6 +286,14 @@ class Front extends CI_Controller {
 	}
 	public function ev(){
 		$this->load->view('eval');
+	}
+	
+	public function concept_detail($concept){
+		$data['topic'] = $this->Front_model->getconcept(array('concpet'=>urldecode($concept)));
+		$types = $data['topic'][0]['slug'];
+		//$data['concept'] = $concept;
+		$data['topics'] = $this->Front_model->getlangtopic(array('prodtyp'=>$types));
+		redirect('topic/'.$types);
 	}
 	
 	public function logout(){

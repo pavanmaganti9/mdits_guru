@@ -14,8 +14,8 @@ class Front_model extends CI_MODEL{
 	public function get_language_bylimit() {
         $this->db->select('*');
 		$this->db->from('languages');
-		$this->db->order_by('created','desc');
-		$this->db->limit(3);
+		$this->db->order_by('name','Asc');
+		//$this->db->limit(3);
 		$query=$this->db->get();
         return $query->result();
     }
@@ -54,8 +54,9 @@ class Front_model extends CI_MODEL{
 
 	function getlangtopic($params = array()){
         $this->db->select('*');
-			$this->db->where('language', $params['prodtyp']);
+			$this->db->where('concept', $params['prodtyp']);
 			$this->db->from('topics');
+			$this->db->order_by('position', 'ASC');
 			$query=$this->db->get();
 			return $query->result_array();
     }
@@ -99,5 +100,20 @@ class Front_model extends CI_MODEL{
             return $query->result_array();
         }
     }
+	
+	function getconcept($params = array()){
+        $this->db->select('*');
+			$this->db->where('concept', $params['concpet']);
+			$this->db->from('topics');
+			$query=$this->db->get();
+			return $query->result_array();
+    }
+	
+	public function retrieve_tuto(){
+		$this->db->select('*');
+		$this->db->from('tutorial');
+		$query=$this->db->get();
+		return $query->result();
+	}
 
 }

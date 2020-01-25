@@ -27,8 +27,8 @@ class Users extends CI_Model {
             $result = $query->row_array();
             
             // Update user data
-            $data['modified'] = date("Y-m-d H:i:s");
-            $update = $this->db->update($this->tableName, $data, array('id'=>$result['id']));
+            $data1['modified'] = date("Y-m-d H:i:s");
+            $update = $this->db->update($this->tableName, $data1, array('id'=>$result['id']));
             
             // user id
             $userID = $result['id'];

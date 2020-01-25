@@ -72,4 +72,47 @@ class Admin_model extends CI_MODEL{
 		$this->db->update('topics', $data);
     }
 	
+	public function delete_row($id,$table){ 
+
+		$query = $this->db->get_where($table,array('id' => $id));
+		if ($query->num_rows() == 1) {
+		$this -> db -> where('id', $id);
+		$this -> db -> delete($table);
+		return true;
+		} else {
+			return false;
+		}
+    }
+	
+	public function retrieve_tuto($techno_name){
+		$query = $this->db->get_where('tutorial', array('techno' => $techno_name));
+		return $query->result();
+	}
+	
+	public function get_positions($table,$concept,$heading){
+		$this->db->select_max('position');
+		$options=array('concept'=>$concept,'heading' => $heading);
+		$result = $this->db->get_where($table,$options)->row();		
+		return $result->position;
+	}
+	
+	public function get_next_row($id,$concept,$heading){	
+		$query = $this->db->query("SELECT * FROM topics WHERE id > ".$id." AND concept = '".$concept."' AND heading = '".$heading."' ORDER BY id ASC LIMIT 1");	
+		return $query->result();
+	}
+	
+	public function get_prev_row($id,$concept,$heading){	
+		$query = $this->db->query("SELECT * FROM topics WHERE id < ".$id." AND concept = '".$concept."' AND heading = '".$heading."' ORDER BY id DESC LIMIT 1");	
+		return $query->result();
+	}
+	
+	function get_search($params){
+			$this->db->select('*');
+			$this->db->like('heading', $params);
+			$this->db->order_by('position', 'ASC');
+			$this->db->from('topics');
+			$query=$this->db->get();
+			return $query->result_array();
+    }
+	
 }

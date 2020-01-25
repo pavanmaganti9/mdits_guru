@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-
+  <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url(); ?>assets/images/t.jpg">
   <title><?php echo $title;?></title>
 
   <!-- Bootstrap core CSS -->
@@ -29,7 +29,7 @@
   <!-- Navigation -->
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="<?php echo base_url();?>">MDITS Guru</a>
+      <a class="navbar-brand" href="<?php echo base_url();?>">Trainuonline</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -52,7 +52,7 @@
 		  <?php } ?>
 		  <li>&nbsp;&nbsp;&nbsp;</li>
           <li>
-			<form method="post" action="search" id="sform">
+			<form method="post" action="<?php echo base_url().'search';?>" id="sform">
 				<div class="input-group">
 			<input type="text" class="form-control" placeholder="Search" required name="search">
 			<div class="input-group-append">

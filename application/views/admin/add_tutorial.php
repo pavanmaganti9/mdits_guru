@@ -3,7 +3,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Add a Technology</h1>
+                    <h1 class="page-header">Add a Tutorial</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -17,30 +17,40 @@
 							<?php } ?>
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Technology
+                            Tutorial
                         </div>
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
                                    <form role="form" method="post" enctype="multipart/form-data">
+										<div class="form-group">
+													<label for="lang">Technology</label>
+													<select name="lang" class="form-control">
+										 <option value="none" selected="">--- Select Technology ---</option>
+										 <?php foreach($languages as $post): ?>
+										<option value="<?php echo $post['name'];?>"> <?php echo $post['name'];?></option>
+										<?php endforeach;?>
+										</select>
+										<?php echo form_error('lang','<p class="help-block" style="color:red;">','</p>'); ?>
+										</div>
                                         <div class="form-group">
                                             <label>Name</label>
-                                            <input class="form-control" name="langname" value="<?php echo set_value('langname'); ?>">
-											<?php echo form_error('langname','<p class="help-block" style="color:red;">','</p>'); ?>
+                                            <input class="form-control" name="tutoname" value="<?php echo set_value('tutoname'); ?>">
+											<?php echo form_error('tutoname','<p class="help-block" style="color:red;">','</p>'); ?>
                                         </div>
 										
                                         <div class="form-group">
                                             <label>Image</label>
-                                            <input type="file" name="langimage">
-											<?php echo form_error('langimage','<p class="help-block" style="color:red;">','</p>'); ?>
+                                            <input type="file" name="tutoimage">
+											<?php echo form_error('tutoimage','<p class="help-block" style="color:red;">','</p>'); ?>
                                         </div>
                                         <div class="form-group">
                                             <label>Description</label>
-                                            <textarea class="form-control" rows="3" name="langdesc"><?php echo set_value('langdesc'); ?></textarea>
-											<?php echo form_error('langdesc','<p class="help-block" style="color:red;">','</p>'); ?>
+                                            <textarea class="form-control" rows="3" name="tutodesc"><?php echo set_value('tutodesc'); ?></textarea>
+											<?php echo form_error('tutodesc','<p class="help-block" style="color:red;">','</p>'); ?>
                                         </div>
 										<div class="form-group">
-						<input type="submit" name="langSubmit" class="btn btn-primary" value="Add Technology">
+						<input type="submit" name="tutoSubmit" class="btn btn-primary" value="Add Tutorial">
                         </div>
 							</form>
 							   </div>

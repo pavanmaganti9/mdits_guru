@@ -103,7 +103,7 @@
                                         </div>
 										<div class="form-group">
 													<label for="lang">Topic</label>
-										<select name="topic" class="form-control">
+										<select name="topic[]" class="form-control" multiple="multiple">
 										 <option value="none">---Select Company---</option>
 										 <option value="<?php echo $user['topic'];?>" selected> <?php echo $user['topic'];?></option>
 										<?php foreach($lang as $post): ?>

@@ -5,7 +5,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+	<link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url(); ?>assets/images/t.jpg">
     <title><?php echo $title;?></title>
 
     <!-- Core CSS - Include with every page -->
@@ -77,22 +77,35 @@
                             <a href="<?php echo base_url('admin/dashboard'); ?>"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Languages<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Technologies<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="<?php echo base_url('admin/add_language'); ?>">Add a Language</a>
+                                    <a href="<?php echo base_url('admin/add_language'); ?>">Add a Technology</a>
                                 </li>
                                 <li>
                                     <a href="<?php echo base_url('admin/languages'); ?>">View All</a>
                                 </li>
                             </ul>
-                            <!-- /.nav-second-level -->
+                        </li>
+						<li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Tutorials<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="<?php echo base_url('admin/add_tutorial'); ?>">Add a Tutorial</a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo base_url('admin/tutorials'); ?>">View All</a>
+                                </li>
+                            </ul>
                         </li>
                         <li>
                             <a href="<?php echo base_url('admin/add_topic'); ?>"><i class="fa fa-table fa-fw"></i> Add Topics</a>
                         </li>
                         <li>
                             <a href="<?php echo base_url('admin/topics'); ?>"><i class="fa fa-edit fa-fw"></i> Topics</a>
+                        </li>
+						<li>
+                            <a href="<?php echo base_url('admin/positions'); ?>"><i class="fa fa-edit fa-fw"></i> Topic position</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-wrench fa-fw"></i> Users<span class="fa arrow"></span></a>

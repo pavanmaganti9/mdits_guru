@@ -31,6 +31,12 @@
                             <div class="row">
                                 <div class="col-lg-12">
                             <form role="form" method="post" enctype="multipart/form-data">
+										<div class="form-group">
+                                            <label>Concept Name</label>
+                                            <input class="form-control" name="conceptname" value="<?php echo !empty($post['concept'])?$post['concept']:''; ?>">
+											<?php echo form_error('conceptname','<p class="help-block" style="color:red;">','</p>'); ?>
+											<p class="help-block">Please write same Concept name (case-sensitive) for related topics.</p>
+                                        </div>
                                         <div class="form-group">
                                             <label>Topic Name</label>
                                             <input class="form-control" name="topicname" value="<?php echo !empty($post['name'])?$post['name']:''; ?>">

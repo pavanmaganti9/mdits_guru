@@ -31,15 +31,10 @@
                             <div class="row">
                                 <div class="col-lg-12">
                             <form role="form" method="post" enctype="multipart/form-data">
-                                        <div class="form-group">
-                                            <label>Topic Name</label>
-                                            <input class="form-control" name="topicname" value="<?php echo set_value('topicname'); ?>">
-											<?php echo form_error('topicname','<p class="help-block" style="color:red;">','</p>'); ?>
-                                        </div>
 										<div class="form-group">
-													<label for="lang">Language</label>
-													<select name="lang" class="form-control" required>
-										 <option>--- Select Language ---</option>
+													<label for="lang">Technology</label>
+													<select name="lang" class="form-control" required id="lang">
+										 <option value="none" selected="">--- Select Technology ---</option>
 										 <?php foreach($languages as $post): ?>
 										<option value="<?php echo $post['name'];?>"> <?php echo $post['name'];?></option>
 										<?php endforeach;?>
@@ -47,9 +42,28 @@
 										<?php echo form_error('lang','<p class="help-block" style="color:red;">','</p>'); ?>
 										</div>
 										<div class="form-group">
+                                            <label>Tutorial Name</label>
+											<select class="form-control" name="tutoname" id="tutoname" disabled="">
+												<option  value="none" selected="">Select Tutorial</option>
+											</select>
+											<?php echo form_error('tutoname','<p class="help-block" style="color:red;">','</p>'); ?>
+										</div>
+										<div class="form-group">
+                                            <label>Heading</label>
+                                            <input class="form-control" name="heading" value="<?php echo set_value('heading'); ?>">
+											<?php echo form_error('heading','<p class="help-block" style="color:red;">','</p>'); ?>
+											<p class="help-block">Please write same Heading (case-sensitive) for related Tutorial.</p>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Topic</label>
+                                            <input class="form-control" name="topicname" value="<?php echo set_value('topicname'); ?>">
+											<?php echo form_error('topicname','<p class="help-block" style="color:red;">','</p>'); ?>
+                                        </div>
+										
+										<div class="form-group">
                                             <label>Document</label>
                                             <input type="file" name="topicdoc">
-											<?php echo form_error('topicdoc','<p class="help-block" style="color:red;">','</p>'); ?>
+											<?php //echo form_error('topicdoc','<p class="help-block" style="color:red;">','</p>'); ?>
 											<p class="help-block">Please upload files with extension ".pdf", ".doc", ".docx"</p>
                                         </div>
                                         <div class="form-group">
@@ -95,7 +109,30 @@
     <!-- SB Admin Scripts - Include with every page -->
     <script src="<?php echo base_url(); ?>assets/admin/js/sb-admin.js"></script>
 
-    <!-- Page-Level Demo Scripts - Forms - Use for reference -->
+    <script>
+		$(document).ready(function(){
+			$('#lang').on('change',function(){
+				var techno_name = $(this).val();
+				if(techno_name == ''){
+					$('#tutoname').prop('disabled',true);
+				}else{
+					$('#tutoname').prop('disabled',false);
+					$.ajax({
+						url:"<?php echo base_url('admin/get_tutorial'); ?>",
+						type:"POST",
+						data:{'techno_name':techno_name},
+						dataType:'json',
+						success:function(data){
+							$('#tutoname').html(data);
+						},
+						error:function(){
+							$('#tutoname').prop('disabled',true);
+						}
+					});
+				}
+			})
+		});
+	</script>
 
 </body>
 
